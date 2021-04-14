@@ -1,15 +1,17 @@
 import javax.swing.*;
 import Sweeper.Box;
+import Sweeper.Coord;
+import Sweeper.Ranges;
+
 import java.awt.*;
-import java.util.*;
 
 /**
  * Created by maxim on 02.04.2021.
  */
 public class JavaSweeper extends JFrame {
     private JPanel panel;
-    private final int COLS = 15;
-    private final int ROWS = 1;
+    private final int COLS = 9;
+    private final int ROWS = 9;
     private final int IMAGE_SIZE = 50;
 
     public static void main(String[] args)
@@ -18,6 +20,7 @@ public class JavaSweeper extends JFrame {
     }
     private JavaSweeper()
     {
+        Ranges.setSize(new Coord(COLS, ROWS));
         setImage();
         initJPanel();
         initJFrame();
@@ -37,12 +40,13 @@ public class JavaSweeper extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                for (Box box: Box.values()) {
-                    g.drawImage((Image) box.image, box.ordinal() * IMAGE_SIZE, 0, this);
+                for (Coord coord: Ranges.getAllCoords()) {
+                    g.drawImage((Image) Box.values()[(coord.x + coord.y) % Box.values().length].image, coord.x * IMAGE_SIZE, coord.y * IMAGE_SIZE,  this);
                 }
             }
         };
-        panel.setPreferredSize(new Dimension(COLS * IMAGE_SIZE,ROWS * IMAGE_SIZE));
+        panel.setPreferredSize(new Dimension
+                (Ranges.getSize().x * IMAGE_SIZE,Ranges.getSize().y * IMAGE_SIZE));
         add(panel);
     }
     private void setImage(){
