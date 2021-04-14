@@ -12,7 +12,6 @@ public class JavaSweeper extends JFrame {
     private final int ROWS = 1;
     private final int IMAGE_SIZE = 50;
 
-
     public static void main(String[] args)
     {
         new JavaSweeper();
