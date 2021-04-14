@@ -1,0 +1,10 @@
+package Sweeper;
+
+/**
+ * Created by maxim on 03.04.2021.
+ */
+public enum Box {
+    ZERO, NUM1, NUM2, NUM3, NUM4, NUM5, NUM6, NUM7, NUM8, BOMB, OPENED, CLOSED, FLAGED, BOMBED, NOBOMB;
+
+    public Object image;
+}
