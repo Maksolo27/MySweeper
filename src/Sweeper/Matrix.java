@@ -20,6 +20,7 @@ class Matrix {
         }
         return null;
     }
+
     void set(Coord coord, Box box){
         if(Ranges.inRange(coord)) {
             matrix[coord.x][coord.y] = box;

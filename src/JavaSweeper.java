@@ -21,6 +21,7 @@ public class JavaSweeper extends JFrame {
     {
         new JavaSweeper();
     }
+
     private JavaSweeper()
     {
         game = new Game(COLS, ROWS, BOMBS);
@@ -39,6 +40,7 @@ public class JavaSweeper extends JFrame {
         setVisible(true);
         setIconImage(getImage("icon"));
     }
+
     private void initJPanel(){
         panel = new JPanel()
         {
@@ -54,11 +56,13 @@ public class JavaSweeper extends JFrame {
                 (Ranges.getSize().x * IMAGE_SIZE,Ranges.getSize().y * IMAGE_SIZE));
         add(panel);
     }
+
     private void setImage(){
         for (Box box: Box.values()) {
             box.image = getImage(box.name().toLowerCase());
         }
     }
+
     private Image getImage(String name)
     {
         String filename = "img/" + name + ".png";
