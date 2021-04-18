@@ -12,7 +12,12 @@ public class Coord {
         this.y = y;
     }
 
-
-
-
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Coord){
+            Coord to = (Coord)obj;
+            return  to.x == x && to.y == y;
+        }
+        return super.equals(obj);
+    }
 }

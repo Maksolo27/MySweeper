@@ -22,6 +22,9 @@ class Bomb {
     private void placeBomb(){
         Coord coord = Ranges.getRandomCoord();
         bombMap.set(coord, Box.BOMB);
+        for (Coord around: Ranges.getCoordsAround(coord)) {
+            bombMap.set(around, Box.NUM1);
+        }
     }
     Box get(Coord coord){
         return bombMap.get(coord);
@@ -30,4 +33,6 @@ class Bomb {
     public int getTotalBombs() {
         return totalBombs;
     }
+
+
 }
