@@ -20,7 +20,10 @@ public class Game {
     }
 
     public Box getBox(Coord coord){
-         return flag.get(coord);
+        if(flag.get(coord) == Box.OPENED)
+            return bomb.get(coord);
+        else
+            return flag.get(coord);
     }
 
 }

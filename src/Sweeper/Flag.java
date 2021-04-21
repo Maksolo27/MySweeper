@@ -8,6 +8,9 @@ class Flag {
 
     void start(){
         flagMap = new Matrix(Box.CLOSED);
+        for (Coord coord: Ranges.getCoordsAround(new Coord(4,4))) {
+            flagMap.set(coord, Box.OPENED);
+        }
     }
 
     Box get(Coord coord){
