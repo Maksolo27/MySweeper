@@ -63,7 +63,9 @@ public class JavaSweeper extends JFrame {
                 Coord coord = new Coord(x, y);
                 if(e.getButton() == MouseEvent.BUTTON1)
                     game.pressLeftButton(coord);
-                panel.repaint();
+                if(e.getButton() == MouseEvent.BUTTON3)
+                    game.pressRightButton(coord);
+                panel.repaint();//Перерисовка
             }
         });
         panel.setPreferredSize(new Dimension
