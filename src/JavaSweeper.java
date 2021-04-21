@@ -19,13 +19,11 @@ public class JavaSweeper extends JFrame {
     private final int IMAGE_SIZE = 50;
     private final int BOMBS = 10;
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         new JavaSweeper();
     }
 
-    private JavaSweeper()
-    {
+    private JavaSweeper() {
         game = new Game(COLS, ROWS, BOMBS);
         game.start();
         Ranges.setSize(new Coord(COLS, ROWS));
@@ -34,18 +32,17 @@ public class JavaSweeper extends JFrame {
         initJFrame();
     }
     private void initJFrame(){
-        pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Закрытие фрейма
         setTitle("Сапёр");
-        setLocationRelativeTo(null); //Окно по центру
         setResizable(false);
         setVisible(true);
         setIconImage(getImage("icon"));
+        pack();
+        setLocationRelativeTo(null); //Окно по центру
     }
 
     private void initJPanel(){
-        panel = new JPanel()
-        {
+        panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -65,6 +62,8 @@ public class JavaSweeper extends JFrame {
                     game.pressLeftButton(coord);
                 if(e.getButton() == MouseEvent.BUTTON3)
                     game.pressRightButton(coord);
+                if(e.getButton() == MouseEvent.BUTTON2)
+                    game.start();
                 panel.repaint();//Перерисовка
             }
         });
@@ -79,8 +78,7 @@ public class JavaSweeper extends JFrame {
         }
     }
 
-    private Image getImage(String name)
-    {
+    private Image getImage(String name) {
         String filename = "img/" + name + ".png";
         ImageIcon icon = new ImageIcon(getClass().getResource(filename));
         return icon.getImage();
