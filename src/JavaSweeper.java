@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 public class JavaSweeper extends JFrame {
     private Game game;
     private JPanel panel;
+    private JLabel label;
     private final int COLS = 9;
     private final int ROWS = 9;
     private final int IMAGE_SIZE = 50;
@@ -28,9 +29,11 @@ public class JavaSweeper extends JFrame {
         game.start();
         Ranges.setSize(new Coord(COLS, ROWS));
         setImage();
+        initLabel();
         initJPanel();
         initJFrame();
     }
+
     private void initJFrame(){
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Закрытие фрейма
         setTitle("Сапёр");
@@ -39,6 +42,12 @@ public class JavaSweeper extends JFrame {
         setIconImage(getImage("icon"));
         pack();
         setLocationRelativeTo(null); //Окно по центру
+    }
+
+    private void initLabel(){
+        label = new JLabel("Welcome!");
+        add(label, BorderLayout.SOUTH);
+
     }
 
     private void initJPanel(){
@@ -58,12 +67,13 @@ public class JavaSweeper extends JFrame {
                 int x = e.getX() / IMAGE_SIZE;
                 int y = e.getY() / IMAGE_SIZE;
                 Coord coord = new Coord(x, y);
-                if(e.getButton() == MouseEvent.BUTTON1)
+                if(e.getButton() == MouseEvent.BUTTON1)//Левая
                     game.pressLeftButton(coord);
-                if(e.getButton() == MouseEvent.BUTTON3)
+                if(e.getButton() == MouseEvent.BUTTON3)//Правая
                     game.pressRightButton(coord);
-                if(e.getButton() == MouseEvent.BUTTON2)
+                if(e.getButton() == MouseEvent.BUTTON2)//Центральная
                     game.start();
+                label.setText(getMessage());
                 panel.repaint();//Перерисовка
             }
         });
@@ -82,6 +92,19 @@ public class JavaSweeper extends JFrame {
         String filename = "img/" + name + ".png";
         ImageIcon icon = new ImageIcon(getClass().getResource(filename));
         return icon.getImage();
+    }
+
+    private String getMessage(){
+        switch (game.getState()){
+            case PLAYED:
+                return "Play";
+            case BOMBED:
+                return "You lose";
+            case WINNER:
+                return "You Win";
+            default:
+                return "Welcome";
+        }
     }
 
 

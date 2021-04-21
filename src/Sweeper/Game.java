@@ -29,10 +29,44 @@ public class Game {
     }
 
     public void pressLeftButton(Coord coord){
+        openBox(coord);
+        checkWinner();
+    }
+
+    private void checkWinner(){
+        if(state == GameState.PLAYED)
+            if(flag.getCountOfClosedBoxes() == bomb.getTotalBombs())
+                state = GameState.WINNER;
+
+    }
+
+    private void openBox(Coord coord){
+        switch (flag.get(coord)){
+            case OPENED:return;
+            case FLAGED:return;
+            case CLOSED:
+                switch (bomb.get(coord)){
+                    case ZERO:openBoxesAround(coord);return;
+                    case BOMB:return;
+                    default:
+                        flag.setOpenedBox(coord);
+                        return;
+                }
+        }
+    }
+
+    private void openBoxesAround(Coord coord) {
         flag.setOpenedBox(coord);
+        for (Coord around: Ranges.getCoordsAround(coord)) {
+            openBox(around);
+        }
     }
 
     public void pressRightButton(Coord coord) {
         flag.toogleFlagedToBox(coord);
+    }
+
+    public GameState getState() {
+        return state;
     }
 }
