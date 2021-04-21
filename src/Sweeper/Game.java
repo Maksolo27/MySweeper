@@ -47,11 +47,22 @@ public class Game {
             case CLOSED:
                 switch (bomb.get(coord)){
                     case ZERO:openBoxesAround(coord);return;
-                    case BOMB:return;
+                    case BOMB:openBombs(coord);return;
                     default:
                         flag.setOpenedBox(coord);
                         return;
                 }
+        }
+    }
+
+    private void openBombs(Coord bombed) {
+        state = GameState.BOMBED;
+        flag.setBombedToBox(bombed);
+        for (Coord coord: Ranges.getAllCoords()) {
+            if(bomb.get(coord) == Box.BOMB)
+                flag.setOpenedToClosedBomb(coord);
+            else
+                flag.setNoBombToFlagedSafeBox(coord);
         }
     }
 
