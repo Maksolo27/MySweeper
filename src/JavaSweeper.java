@@ -36,7 +36,7 @@ public class JavaSweeper extends JFrame {
 
     private void initJFrame(){
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Закрытие фрейма
-        setTitle("Сапёр");
+        setTitle("Мy Swepper");
         setResizable(false);
         setVisible(true);
         setIconImage(getImage("icon"));
