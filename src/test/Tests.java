@@ -17,10 +17,7 @@ public class Tests {
         System.out.println("Init test");
     }
 
-    @AfterClass
-    public static void end() {
-        System.out.println("Test over");
-    }
+
 
     @Test
     public void listTest(){
