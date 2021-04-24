@@ -11,7 +11,7 @@ import org.junit.Test;
  */
 public class Tests {
 
-    @BeforeClass
+
     public static void init() {
         Coord coord = new Coord(0,0);
         System.out.println("Init test");
