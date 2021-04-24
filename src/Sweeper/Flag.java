@@ -55,7 +55,7 @@ class Flag {
     }
 
     void setNoBombToFlagedSafeBox(Coord coord) {
-        if(flagMap.get(coord) ==Box.FLAGED)
+        if(flagMap.get(coord) == Box.FLAGED)
             flagMap.set(coord, Box.NOBOMB);
     }
 

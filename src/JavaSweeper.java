@@ -34,6 +34,7 @@ public class JavaSweeper extends JFrame {
         initJFrame();
     }
 
+
     private void initJFrame(){
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Закрытие фрейма
         setTitle("Мy Swepper");
